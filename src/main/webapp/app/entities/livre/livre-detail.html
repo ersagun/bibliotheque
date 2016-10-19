@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span>Livre</span> {{vm.livre.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Date Edition</span></dt>
+        <dd>
+            <span>{{vm.livre.dateEdition | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Resume</span></dt>
+        <dd>
+            <span>{{vm.livre.resume}}</span>
+        </dd>
+        <dt><span>Url</span></dt>
+        <dd>
+            <span>{{vm.livre.url}}</span>
+        </dd>
+        <dt><span>Oeuvre</span></dt>
+        <dd>
+            <a ui-sref="oeuvre-detail({id:vm.livre.oeuvreId})">{{vm.livre.oeuvreId}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="livre-detail.edit({id:vm.livre.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm"> Edit</span>
+    </button>
+</div>

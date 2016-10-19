@@ -1,0 +1,64 @@
+<div>
+    <h2>Auteurs</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="auteur.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Create new Auteur
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span>ID</span></th>
+                    <th><span>Nom</span></th>
+                    <th><span>Prenom</span></th>
+                    <th><span>Livre</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="auteur in vm.auteurs track by auteur.id">
+                    <td><a ui-sref="auteur-detail({id:auteur.id})">{{auteur.id}}</a></td>
+                    <td>{{auteur.nom}}</td>
+                    <td>{{auteur.prenom}}</td>
+                    <td>
+                        <span ng-repeat="livre in auteur.livres">
+                            <a class="form-control-static" ui-sref="livre-detail({id: livre.id})">{{livre.id}}</a>{{$last ? '' : ', '}}
+                        </span>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="auteur-detail({id:auteur.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="auteur.edit({id:auteur.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="auteur.delete({id:auteur.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

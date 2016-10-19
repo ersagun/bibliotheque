@@ -1,0 +1,28 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "auteur",
+            "relationshipName": "livre",
+            "otherEntityName": "livre",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nom",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "prenom",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20161019120455",
+    "entityTableName": "auteur",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "no"
+}

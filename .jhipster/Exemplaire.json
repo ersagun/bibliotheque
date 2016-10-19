@@ -1,0 +1,32 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "emprunt",
+            "otherEntityName": "emprunt",
+            "otherEntityRelationshipName": "exemplaire"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "oeuvre",
+            "otherEntityName": "oeuvre",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "etat",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "disponible",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20161019120454",
+    "entityTableName": "exemplaire",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "no"
+}

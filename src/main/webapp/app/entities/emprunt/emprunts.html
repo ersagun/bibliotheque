@@ -1,0 +1,66 @@
+<div>
+    <h2>Emprunts</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="emprunt.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Create new Emprunt
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span>ID</span></th>
+                    <th><span>Debut</span></th>
+                    <th><span>Duree</span></th>
+                    <th><span>Usager</span></th>
+                    <th><span>Exemplaire</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="emprunt in vm.emprunts track by emprunt.id">
+                    <td><a ui-sref="emprunt-detail({id:emprunt.id})">{{emprunt.id}}</a></td>
+                    <td>{{emprunt.debut | date:'medium'}}</td>
+                    <td>{{emprunt.duree}}</td>
+                    <td>
+                        <a ui-sref="usager-detail({id:emprunt.usagerId})">{{emprunt.usagerId}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="exemplaire-detail({id:emprunt.exemplaireId})">{{emprunt.exemplaireId}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="emprunt-detail({id:emprunt.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="emprunt.edit({id:emprunt.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="emprunt.delete({id:emprunt.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "oeuvre",
+            "otherEntityName": "oeuvre",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "magazine"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "numero",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "parution",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "periodicite",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20161019120453",
+    "entityTableName": "magazine",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "no"
+}

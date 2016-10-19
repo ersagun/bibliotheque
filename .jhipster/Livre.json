@@ -1,0 +1,39 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "oeuvre",
+            "otherEntityName": "oeuvre",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "livre"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "auteur",
+            "otherEntityName": "auteur",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "livre"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "dateEdition",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "resume",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "url",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20161019120452",
+    "entityTableName": "livre",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "no"
+}

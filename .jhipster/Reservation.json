@@ -1,0 +1,28 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "usager",
+            "otherEntityName": "usager",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "oeuvre",
+            "otherEntityName": "oeuvre",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "dateDemande",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "changelogDate": "20161019120450",
+    "entityTableName": "reservation",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "no"
+}

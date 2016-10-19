@@ -1,0 +1,46 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "reservation",
+            "otherEntityName": "reservation",
+            "otherEntityRelationshipName": "oeuvre"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "exemplaire",
+            "otherEntityName": "exemplaire",
+            "otherEntityRelationshipName": "oeuvre"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "livre",
+            "otherEntityName": "livre",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "oeuvre"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "magazine",
+            "otherEntityName": "magazine",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "oeuvre"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "titre",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "editeur",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20161019120451",
+    "entityTableName": "oeuvre",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "no"
+}

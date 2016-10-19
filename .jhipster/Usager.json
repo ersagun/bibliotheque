@@ -1,0 +1,44 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "reservation",
+            "otherEntityName": "reservation",
+            "otherEntityRelationshipName": "usager"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "emprunt",
+            "otherEntityName": "emprunt",
+            "otherEntityRelationshipName": "usager"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nom",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "prenom",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "adresse",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dateNaissance",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "telephone",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20161019120448",
+    "entityTableName": "usager",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "no"
+}

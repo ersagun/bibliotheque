@@ -1,0 +1,32 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "usager",
+            "otherEntityName": "usager",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "exemplaire",
+            "otherEntityName": "exemplaire",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "debut",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "duree",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20161019120449",
+    "entityTableName": "emprunt",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "no"
+}

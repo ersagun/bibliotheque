@@ -37,5 +37,65 @@
            timeToLiveSeconds="3600">
     </cache>
     
+    <cache name="org.miage.m2sid.bibliotheque.domain.Usager"
+        timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="org.miage.m2sid.bibliotheque.domain.Usager.reservations"
+        timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="org.miage.m2sid.bibliotheque.domain.Usager.emprunts"
+        timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="org.miage.m2sid.bibliotheque.domain.Emprunt"
+        timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="org.miage.m2sid.bibliotheque.domain.Reservation"
+        timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="org.miage.m2sid.bibliotheque.domain.Oeuvre"
+        timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="org.miage.m2sid.bibliotheque.domain.Oeuvre.reservations"
+        timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="org.miage.m2sid.bibliotheque.domain.Oeuvre.exemplaires"
+        timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="org.miage.m2sid.bibliotheque.domain.Livre"
+        timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="org.miage.m2sid.bibliotheque.domain.Livre.auteurs"
+        timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="org.miage.m2sid.bibliotheque.domain.Magazine"
+        timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="org.miage.m2sid.bibliotheque.domain.Exemplaire"
+        timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="org.miage.m2sid.bibliotheque.domain.Exemplaire.emprunts"
+        timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="org.miage.m2sid.bibliotheque.domain.Auteur"
+        timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="org.miage.m2sid.bibliotheque.domain.Auteur.livres"
+        timeToLiveSeconds="3600">
+    </cache>
+
     <!-- jhipster-needle-ehcache-add-entry -->
 </ehcache>
