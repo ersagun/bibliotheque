@@ -32,7 +32,7 @@ import java.util.stream.StreamSupport;
 public class OeuvreResource {
 
     private final Logger log = LoggerFactory.getLogger(OeuvreResource.class);
-        
+
     @Inject
     private OeuvreRepository oeuvreRepository;
 
@@ -135,6 +135,7 @@ public class OeuvreResource {
         log.debug("REST request to get Oeuvre : {}", id);
         Oeuvre oeuvre = oeuvreRepository.findOne(id);
         OeuvreDTO oeuvreDTO = oeuvreMapper.oeuvreToOeuvreDTO(oeuvre);
+        oeuvreDTO.setExemplaires(oeuvre.getExemplaires());
         return Optional.ofNullable(oeuvreDTO)
             .map(result -> new ResponseEntity<>(
                 result,

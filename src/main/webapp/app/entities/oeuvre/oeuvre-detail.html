@@ -12,6 +12,17 @@
         <dd>
             <span>{{vm.oeuvre.editeur}}</span>
         </dd>
+
+        <dt><span>Exemplaires</span></dt>
+        <dd>
+            <span>
+
+                <ul ng-repeat="exemplaire in vm.oeuvre.exemplaires track by exemplaire.id">
+                    <li><a ui-sref="exemplaire-detail({id:exemplaire.id})">Etat:{{exemplaire.etat}}, Disponible:{{exemplaire.disponible}}</a></li>
+                </ul>
+
+                </span>
+        </dd>
     </dl>
 
     <button type="submit"

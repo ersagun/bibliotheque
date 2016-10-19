@@ -35,7 +35,7 @@ public class Oeuvre implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Reservation> reservations = new HashSet<>();
 
-    @OneToMany(mappedBy = "oeuvre")
+    @OneToMany(mappedBy = "oeuvre", fetch=FetchType.EAGER)
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Exemplaire> exemplaires = new HashSet<>();

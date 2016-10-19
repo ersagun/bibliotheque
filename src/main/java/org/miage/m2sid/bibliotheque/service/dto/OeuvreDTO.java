@@ -1,5 +1,7 @@
 package org.miage.m2sid.bibliotheque.service.dto;
 
+import org.miage.m2sid.bibliotheque.domain.Exemplaire;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,7 +19,11 @@ public class OeuvreDTO implements Serializable {
 
     private String editeur;
 
+    private Set<Exemplaire> exemplaires;
 
+
+    public Set<Exemplaire> getExemplaires(){return this.exemplaires;}
+    public void setExemplaires( Set<Exemplaire> exemplaires ){this.exemplaires=exemplaires;}
     public Long getId() {
         return id;
     }
