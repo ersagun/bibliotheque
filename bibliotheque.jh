@@ -1,0 +1,80 @@
+entity Usager {
+	nom String,
+	prenom String,
+	adresse String,
+	dateNaissance LocalDate,
+	telephone Integer
+}
+
+entity Emprunt {
+	debut ZonedDateTime,
+	duree Integer
+}
+
+entity Reservation {
+	dateDemande ZonedDateTime
+}
+
+entity Oeuvre {
+	titre String,
+	editeur String
+}
+
+entity Livre {
+	dateEdition LocalDate,
+	resume String,
+    	url String
+}
+
+entity Magazine {
+	numero Integer,
+	parution LocalDate,
+	periodicite Integer
+}
+
+entity Exemplaire {
+	etat Integer,
+	disponible Boolean
+}
+
+entity Auteur {
+	nom String,
+	prenom String
+}
+
+relationship ManyToMany {
+	Auteur{livre} to Livre{auteur}
+}
+
+relationship OneToMany{
+Usager{reservation} to Reservation{usager}
+}
+
+relationship OneToMany{
+	Oeuvre{reservation} to Reservation{oeuvre}
+}
+
+relationship OneToMany{
+Oeuvre{exemplaire} to Exemplaire{oeuvre}
+}
+
+relationship OneToMany{
+Usager{emprunt} to Emprunt{usager}
+}
+
+relationship OneToMany{
+Exemplaire{emprunt} to Emprunt{exemplaire}
+}
+
+relationship OneToOne {
+	Livre{oeuvre} to Oeuvre{livre}
+}
+
+relationship OneToOne {
+	Magazine{oeuvre} to Oeuvre{magazine}
+}
+
+dto * with mapstruct
+
+
+
