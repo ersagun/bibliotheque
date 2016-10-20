@@ -18,7 +18,7 @@
             <span>
 
                 <ul ng-repeat="exemplaire in vm.oeuvre.exemplaires track by exemplaire.id">
-                    <li><a ui-sref="exemplaire-detail({id:exemplaire.id})">Etat:{{exemplaire.etat}}, Disponible:{{exemplaire.disponible}}</a></li>
+                    <li ng-show="exemplaire.disponible"><a ui-sref="exemplaire-detail({id:exemplaire.id})">Etat:{{exemplaire.etat}}, Disponible:{{exemplaire.disponible}}</a></li>
                 </ul>
 
                 </span>

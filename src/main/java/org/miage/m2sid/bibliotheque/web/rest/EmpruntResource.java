@@ -3,7 +3,9 @@ package org.miage.m2sid.bibliotheque.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import org.miage.m2sid.bibliotheque.domain.Emprunt;
 
+import org.miage.m2sid.bibliotheque.domain.Exemplaire;
 import org.miage.m2sid.bibliotheque.repository.EmpruntRepository;
+import org.miage.m2sid.bibliotheque.repository.ExemplaireRepository;
 import org.miage.m2sid.bibliotheque.web.rest.util.HeaderUtil;
 import org.miage.m2sid.bibliotheque.service.dto.EmpruntDTO;
 import org.miage.m2sid.bibliotheque.service.mapper.EmpruntMapper;
@@ -31,9 +33,13 @@ import java.util.stream.Collectors;
 public class EmpruntResource {
 
     private final Logger log = LoggerFactory.getLogger(EmpruntResource.class);
-        
+
     @Inject
     private EmpruntRepository empruntRepository;
+
+    @Inject
+    private ExemplaireRepository exemplaireRepository;
+
 
     @Inject
     private EmpruntMapper empruntMapper;
@@ -56,6 +62,10 @@ public class EmpruntResource {
         }
         Emprunt emprunt = empruntMapper.empruntDTOToEmprunt(empruntDTO);
         emprunt = empruntRepository.save(emprunt);
+
+        Exemplaire exemplaire= exemplaireRepository.findOne(empruntDTO.getExemplaireId());
+        exemplaire.setDisponible(false);
+        exemplaireRepository.save(exemplaire);
         EmpruntDTO result = empruntMapper.empruntToEmpruntDTO(emprunt);
         return ResponseEntity.created(new URI("/api/emprunts/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("emprunt", result.getId().toString()))

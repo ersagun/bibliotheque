@@ -35,7 +35,10 @@
             <select class="form-control" id="field_usager" name="usager" ng-model="vm.emprunt.usagerId" ng-options="usager.id as usager.id for usager in vm.usagers"            >
                 <option value=""></option>
             </select>
+            <a ui-sref="usager.new" target="_blank">Si l'usager n'existe pas, veuillez cliquez ici pour ajouter.</a>
         </div>
+
+
         <div class="form-group">
             <label for="field_exemplaire">Exemplaire</label>
             <select class="form-control" id="field_exemplaire" name="exemplaire" ng-model="vm.emprunt.exemplaireId" ng-options="exemplaire.id as exemplaire.id for exemplaire in vm.exemplaires"            >

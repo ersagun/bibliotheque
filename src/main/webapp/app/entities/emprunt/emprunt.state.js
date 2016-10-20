@@ -108,6 +108,39 @@
                 });
             }]
         })
+
+            .state('emprunt.newParam', {
+                parent: 'emprunt',
+                url: '/newParam/{id_exemplaire}',
+                data: {
+                    authorities: ['ROLE_USER']
+                },
+                onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                    $uibModal.open({
+                        templateUrl: 'app/entities/emprunt/emprunt-dialog.html',
+                        controller: 'EmpruntDialogController',
+                        controllerAs: 'vm',
+                        backdrop: 'static',
+                        size: 'lg',
+                        resolve: {
+                            entity: function () {
+                                return {
+                                    debut: null,
+                                    duree: null,
+                                    id: null,
+                                    exemplaireId: parseInt($stateParams.id_exemplaire, 10)
+
+                                };
+                            }
+                        }
+                    }).result.then(function() {
+                        $state.go('emprunt', null, { reload: 'emprunt' });
+                    }, function() {
+                        $state.go('emprunt');
+                    });
+                }]
+            })
+
         .state('emprunt.edit', {
             parent: 'emprunt',
             url: '/{id}/edit',

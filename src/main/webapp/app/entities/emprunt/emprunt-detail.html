@@ -12,10 +12,13 @@
         <dd>
             <span>{{vm.emprunt.duree}}</span>
         </dd>
-        <dt><span>Usager</span></dt>
+        <dt>
+            <span>Usager</span>
+        </dt>
         <dd>
             <a ui-sref="usager-detail({id:vm.emprunt.usagerId})">{{vm.emprunt.usagerId}}</a>
         </dd>
+
         <dt><span>Exemplaire</span></dt>
         <dd>
             <a ui-sref="exemplaire-detail({id:vm.emprunt.exemplaireId})">{{vm.emprunt.exemplaireId}}</a>
