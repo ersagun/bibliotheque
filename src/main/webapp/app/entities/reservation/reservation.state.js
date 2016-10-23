@@ -107,6 +107,38 @@
                 });
             }]
         })
+
+
+            .state('reservation.newParam', {
+                parent: 'reservation',
+                url: '/newParam/{id_oeuvre}',
+                data: {
+                    authorities: ['ROLE_USER']
+                },
+                onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                    $uibModal.open({
+                        templateUrl: 'app/entities/reservation/reservation-dialog.html',
+                        controller: 'ReservationDialogController',
+                        controllerAs: 'vm',
+                        backdrop: 'static',
+                        size: 'lg',
+                        resolve: {
+                            entity: function () {
+                                return {
+                                    dateDemande: null,
+                                    id: null,
+                                    oeuvreId: parseInt($stateParams.id_oeuvre, 10)
+                                };
+                            }
+                        }
+                    }).result.then(function() {
+                        $state.go('reservation', null, { reload: 'reservation' });
+                    }, function() {
+                        $state.go('reservation');
+                    });
+                }]
+            })
+
         .state('reservation.edit', {
             parent: 'reservation',
             url: '/{id}/edit',

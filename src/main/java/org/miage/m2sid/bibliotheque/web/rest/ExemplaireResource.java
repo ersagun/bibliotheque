@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 public class ExemplaireResource {
 
     private final Logger log = LoggerFactory.getLogger(ExemplaireResource.class);
-        
+
     @Inject
     private ExemplaireRepository exemplaireRepository;
 
@@ -123,6 +123,30 @@ public class ExemplaireResource {
                 HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+
+
+
+
+
+    /**
+     * GET  /exemplaires/:id : get the "id" exemplaire.
+     *
+     * @param id the id of the exemplaireDTO to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the exemplaireDTO, or with status 404 (Not Found)
+     */
+    @RequestMapping(value = "/exemplaires/countDisponible/{id}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public Boolean countDisponibleExemplaire(@PathVariable Long id) {
+        log.debug("REST request to count Exemplaire : {}", id);
+       boolean val=false;
+        if(exemplaireRepository.countDisponibleExemplaireBylivre(id)>0)
+            val=true;
+        return  val;
+    }
+
+
 
     /**
      * DELETE  /exemplaires/:id : delete the "id" exemplaire.

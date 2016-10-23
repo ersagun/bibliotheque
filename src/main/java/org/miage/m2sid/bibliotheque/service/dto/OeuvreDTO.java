@@ -21,9 +21,22 @@ public class OeuvreDTO implements Serializable {
 
     private Set<Exemplaire> exemplaires;
 
+    private boolean exemplaireDisponible;
+
+
+    public boolean getExemplaireDisponible(){
+        return this.exemplaireDisponible;
+    }
+
+    public void setExemplaireDisponible(boolean bool){
+        this.exemplaireDisponible=bool;
+    }
+
 
     public Set<Exemplaire> getExemplaires(){return this.exemplaires;}
     public void setExemplaires( Set<Exemplaire> exemplaires ){this.exemplaires=exemplaires;}
+
+
     public Long getId() {
         return id;
     }

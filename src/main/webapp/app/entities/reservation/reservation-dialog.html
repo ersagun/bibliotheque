@@ -26,13 +26,13 @@
 
         <div class="form-group">
             <label for="field_usager">Usager</label>
-            <select class="form-control" id="field_usager" name="usager" ng-model="vm.reservation.usagerId" ng-options="usager.id as usager.id for usager in vm.usagers"            >
+            <select class="form-control" id="field_usager" name="usager" ng-model="vm.reservation.usagerId" ng-options="usager.id as usager.prenom+' '+usager.nom for usager in vm.usagers"            >
                 <option value=""></option>
             </select>
         </div>
         <div class="form-group">
             <label for="field_oeuvre">Oeuvre</label>
-            <select class="form-control" id="field_oeuvre" name="oeuvre" ng-model="vm.reservation.oeuvreId" ng-options="oeuvre.id as oeuvre.id for oeuvre in vm.oeuvres"            >
+            <select class="form-control" id="field_oeuvre" name="oeuvre" ng-model="vm.reservation.oeuvreId" ng-options="oeuvre.id as oeuvre.titre for oeuvre in vm.oeuvres"            >
                 <option value=""></option>
             </select>
         </div>

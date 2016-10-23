@@ -20,6 +20,7 @@
                 <ul ng-repeat="exemplaire in vm.oeuvre.exemplaires track by exemplaire.id">
                     <li ng-show="exemplaire.disponible"><a ui-sref="exemplaire-detail({id:exemplaire.id})">Etat:{{exemplaire.etat}}, Disponible:{{exemplaire.disponible}}</a></li>
                 </ul>
+                <p ng-show="!vm.oeuvre.exemplaireDisponible">Il n'y a pas d'exemplaire disponible pour cet oeuvre. Si vous voulez l'obtenir, veuillez reserver ce livre.</p>
 
                 </span>
         </dd>
@@ -35,4 +36,13 @@
         <span class="glyphicon glyphicon-pencil"></span>
         <span class="hidden-xs hidden-sm"> Edit</span>
     </button>
+
+    <button type="submit" ng-hide="vm.oeuvre.exemplaireDisponible"
+            ui-sref="reservation.newParam({id_oeuvre:vm.oeuvre.id})"
+            class="btn btn-primary btn-sm">
+        <span class="glyphicon glyphicon-send"></span>
+        <span class="hidden-xs hidden-sm"> Reserver </span>
+    </button>
+
+
 </div>

@@ -3,6 +3,7 @@ package org.miage.m2sid.bibliotheque.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import org.miage.m2sid.bibliotheque.domain.Oeuvre;
 
+import org.miage.m2sid.bibliotheque.repository.ExemplaireRepository;
 import org.miage.m2sid.bibliotheque.repository.OeuvreRepository;
 import org.miage.m2sid.bibliotheque.web.rest.util.HeaderUtil;
 import org.miage.m2sid.bibliotheque.service.dto.OeuvreDTO;
@@ -38,6 +39,9 @@ public class OeuvreResource {
 
     @Inject
     private OeuvreMapper oeuvreMapper;
+
+    @Inject
+    private ExemplaireRepository exemplaireRepository;
 
     /**
      * POST  /oeuvres : Create a new oeuvre.
@@ -136,6 +140,7 @@ public class OeuvreResource {
         Oeuvre oeuvre = oeuvreRepository.findOne(id);
         OeuvreDTO oeuvreDTO = oeuvreMapper.oeuvreToOeuvreDTO(oeuvre);
         oeuvreDTO.setExemplaires(oeuvre.getExemplaires());
+        oeuvreDTO.setExemplaireDisponible(exemplaireRepository.countDisponibleExemplaireBylivre(id)>0);
         return Optional.ofNullable(oeuvreDTO)
             .map(result -> new ResponseEntity<>(
                 result,
