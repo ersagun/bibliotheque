@@ -5,10 +5,13 @@ import org.miage.m2sid.bibliotheque.domain.Livre;
 
 import org.miage.m2sid.bibliotheque.repository.LivreRepository;
 import org.miage.m2sid.bibliotheque.web.rest.util.HeaderUtil;
+import org.miage.m2sid.bibliotheque.web.rest.util.PaginationUtil;
 import org.miage.m2sid.bibliotheque.service.dto.LivreDTO;
 import org.miage.m2sid.bibliotheque.service.mapper.LivreMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -31,7 +34,7 @@ import java.util.stream.Collectors;
 public class LivreResource {
 
     private final Logger log = LoggerFactory.getLogger(LivreResource.class);
-
+        
     @Inject
     private LivreRepository livreRepository;
 
@@ -91,16 +94,20 @@ public class LivreResource {
     /**
      * GET  /livres : get all the livres.
      *
+     * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of livres in body
+     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
     @RequestMapping(value = "/livres",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public List<LivreDTO> getAllLivres() {
-        log.debug("REST request to get all Livres");
-        List<Livre> livres = livreRepository.findAll();
-        return livreMapper.livresToLivreDTOs(livres);
+    public ResponseEntity<List<LivreDTO>> getAllLivres(Pageable pageable)
+        throws URISyntaxException {
+        log.debug("REST request to get a page of Livres");
+        Page<Livre> page = livreRepository.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/livres");
+        return new ResponseEntity<>(livreMapper.livresToLivreDTOs(page.getContent()), headers, HttpStatus.OK);
     }
 
     /**

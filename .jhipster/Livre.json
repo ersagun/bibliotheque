@@ -34,6 +34,6 @@
     "changelogDate": "20161019120452",
     "entityTableName": "livre",
     "dto": "mapstruct",
-    "pagination": "no",
+    "pagination": "pagination",
     "service": "no"
 }
