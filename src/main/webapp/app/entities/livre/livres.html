@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="content/css/hover-min.css">
 <div>
     <h2>Livres</h2>
     <jhi-alert></jhi-alert>
@@ -7,13 +8,15 @@
                 <button class="btn btn-primary" ui-sref="livre.new" >
                     <span class="glyphicon glyphicon-plus"></span>
                     <span >
-                        Create new Livre
+                        Ajouter un livre
                     </span>
                 </button>
             </div>
         </div>
     </div>
     <br/>
+
+    <!--
     <div class="table-responsive">
         <table class="jh-table table table-striped">
             <thead>
@@ -60,7 +63,29 @@
                 </tr>
             </tbody>
         </table>
-    </div>
+    </div> -->
+
+    <div>
+    <div class="row" style="overflow:hidden;">
+     <div class="col-sm-6 col-md-4" style="overflow:hidden; width:100%; text-align: center">
+
+         <div class="thumbnail hvr-pulse-grow" ng-repeat="livre in vm.livres track by livre.id"
+              style="float:left; height: 400px; display: inline-block; margin:4%; width:25%" ;
+              ui-sref="oeuvre-detail({id:livre.oeuvreId})">
+             <img src={{livre.url}}>
+             <div class="caption">
+                 <p>Titre: {{livre.titre}} </p>
+                 <p>ISBN: {{livre.id}} </p>
+                 <p>Date d'édition: {{livre.dateEdition | date:"yyyy" }}</p>
+                 <p>Auteurs:</p>
+                 <p ng-repeat="auteur in livre.auteurs track by auteur.id">{{auteur.nom}}</p>
+                 <p>Resume: {{livre.resume}}</p>
+             </div>
+         </div>
+     </div>
+ </div>
+</div>
+
     <div class="text-center">
         <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
         <uib-pagination class="pagination-sm" total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>

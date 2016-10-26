@@ -1,5 +1,7 @@
 package org.miage.m2sid.bibliotheque.service.dto;
 
+import org.miage.m2sid.bibliotheque.domain.Auteur;
+
 import java.time.LocalDate;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -20,9 +22,30 @@ public class LivreDTO implements Serializable {
 
     private String url;
 
+    private String titre;
 
     private Long oeuvreId;
-    
+
+    private Set<Auteur> auteurs;
+
+    public void setAuteurs(Set<Auteur> auteurs) {
+        this.auteurs = auteurs;
+    }
+
+    public Set<Auteur> getAuteurs() {
+
+        return auteurs;
+    }
+
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
+
+    public String getTitre() {
+
+        return titre;
+    }
+
     public Long getId() {
         return id;
     }

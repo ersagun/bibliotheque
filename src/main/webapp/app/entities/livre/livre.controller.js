@@ -9,7 +9,7 @@
 
     function LivreController ($scope, $state, Livre, ParseLinks, AlertService, pagingParams, paginationConstants) {
         var vm = this;
-        
+
         vm.loadPage = loadPage;
         vm.predicate = pagingParams.predicate;
         vm.reverse = pagingParams.ascending;
@@ -36,6 +36,7 @@
                 vm.totalItems = headers('X-Total-Count');
                 vm.queryCount = vm.totalItems;
                 vm.livres = data;
+                console.log(data);
                 vm.page = pagingParams.page;
             }
             function onError(error) {

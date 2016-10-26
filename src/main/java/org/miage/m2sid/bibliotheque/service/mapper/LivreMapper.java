@@ -13,7 +13,10 @@ import java.util.List;
 public interface LivreMapper {
 
     @Mapping(source = "oeuvre.id", target = "oeuvreId")
+    @Mapping(source = "oeuvre.titre", target = "titre")
+    @Mapping(source = "auteurs", target = "auteurs")
     LivreDTO livreToLivreDTO(Livre livre);
+
 
     List<LivreDTO> livresToLivreDTOs(List<Livre> livres);
 

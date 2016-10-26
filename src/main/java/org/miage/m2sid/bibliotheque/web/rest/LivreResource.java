@@ -34,7 +34,7 @@ import java.util.stream.Collectors;
 public class LivreResource {
 
     private final Logger log = LoggerFactory.getLogger(LivreResource.class);
-        
+
     @Inject
     private LivreRepository livreRepository;
 
