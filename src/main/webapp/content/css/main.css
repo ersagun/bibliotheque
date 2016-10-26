@@ -12,42 +12,6 @@ Hide ng-cloak on page load, https://docs.angularjs.org/api/ng/directive/ngCloak
 }
 
 /* ==========================================================================
-Developement Ribbon
-========================================================================== */
-.ribbon {
-    background-color: #a00;
-    box-shadow: 0 0 10px #888;
-    left: -3.5em;
-    moz-box-shadow: 0 0 10px #888;
-    moz-transform: rotate(-45deg);
-    ms-transform: rotate(-45deg);
-    o-transform: rotate(-45deg);
-    overflow: hidden;
-    position: absolute;
-    top: 40px;
-    transform: rotate(-45deg);
-    webkit-box-shadow: 0 0 10px #888;
-    webkit-transform: rotate(-45deg);
-    white-space: nowrap;
-    width: 15em;
-    z-index: 9999;
-    pointer-events: none;
-}
-
-.ribbon a {
-    border: 1px solid #faa;
-    color: #fff;
-    display: block;
-    font: bold 81.25% 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    margin: 1px 0;
-    padding: 10px 50px;
-    text-align: center;
-    text-decoration: none;
-    text-shadow: 0 0 5px #444;
-    pointer-events: none;
-}
-
-/* ==========================================================================
 Version number in navbar
 ========================================================================== */
 .navbar-version {
@@ -327,6 +291,18 @@ ui bootstrap tweaks
 .datetime-picker-dropdown > li.date-picker-menu div > table:focus,
 .uib-datepicker-popup  > li > div.uib-datepicker > table:focus {
     outline: none;
+}
+
+.mainCenterClass {
+    text-align: center;
+}
+
+#mainCenter {
+    width: 100%;
+}
+
+.thumbnail {
+    float: left; margin: 1em;
 }
 
 

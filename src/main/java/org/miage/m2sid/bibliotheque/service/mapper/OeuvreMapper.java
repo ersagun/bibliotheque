@@ -12,6 +12,7 @@ import java.util.List;
 @Mapper(componentModel = "spring", uses = {})
 public interface OeuvreMapper {
 
+    @Mapping(target = "exemplaireDisponible", ignore = true)
     OeuvreDTO oeuvreToOeuvreDTO(Oeuvre oeuvre);
 
     List<OeuvreDTO> oeuvresToOeuvreDTOs(List<Oeuvre> oeuvres);

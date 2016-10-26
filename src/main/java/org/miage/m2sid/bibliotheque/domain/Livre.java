@@ -38,7 +38,7 @@ public class Livre implements Serializable {
     @JoinColumn(unique = true)
     private Oeuvre oeuvre;
 
-    @ManyToMany(mappedBy = "livres")
+    @ManyToMany(mappedBy = "livres", fetch = FetchType.EAGER)
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Auteur> auteurs = new HashSet<>();
