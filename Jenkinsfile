@@ -14,9 +14,9 @@ node {
         checkout scm
     }
 
-    stage('npm install') {
-        sh "npm install"
-    }
+//    stage('npm install') {
+//        sh "npm install"
+//    }
 
     stage('clean') {
         sh "./mvnw clean"
@@ -26,9 +26,9 @@ node {
         sh "./mvnw test"
     }
 
-    stage('frontend tests') {
-        sh "gulp test"
-    }
+//    stage('frontend tests') {
+//        sh "gulp test"
+//    }
 
     stage('packaging') {
         sh "./mvnw package -Pprod -DskipTests"
