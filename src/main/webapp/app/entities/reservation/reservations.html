@@ -43,12 +43,16 @@
                                 <span class="glyphicon glyphicon-eye-open"></span>
                                 <span class="hidden-xs hidden-sm"></span>
                             </button>
-                            <button type="submit"
-                                    ui-sref="reservation.edit({id:reservation.id})"
+
+
+                            <button type="submit" ng-hide="vm.oeuvre.exemplaireDisponible"
+                                    ui-sref="emprunt.newParam({id_exemplaire:vm.reservation.exemplaireId})"
                                     class="btn btn-primary btn-sm">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                                <span class="hidden-xs hidden-sm"></span>
+                                <span class="glyphicon glyphicon-send"></span>
+                                <span class="hidden-xs hidden-sm"> Emprunte </span>
                             </button>
+
+
                             <button type="submit"
                                     ui-sref="reservation.delete({id:reservation.id})"
                                     class="btn btn-danger btn-sm">

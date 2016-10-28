@@ -27,6 +27,6 @@
     "changelogDate": "20161019120453",
     "entityTableName": "magazine",
     "dto": "mapstruct",
-    "pagination": "no",
+    "pagination": "pagination",
     "service": "no"
 }

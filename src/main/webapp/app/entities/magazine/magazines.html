@@ -17,24 +17,22 @@
     <div class="table-responsive">
         <table class="jh-table table table-striped">
             <thead>
-                <tr>
-                    <th><span>ID</span></th>
-                    <th><span>Numero</span></th>
-                    <th><span>Parution</span></th>
-                    <th><span>Periodicite</span></th>
-                    <th><span>Oeuvre</span></th>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="numero"><span>Numero</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="parution"><span>Parution</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="periodicite"><span>Periodicite</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="oeuvreId"><span>Oeuvre</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="magazine in vm.magazines track by magazine.id">
-                    <td><a ui-sref="magazine-detail({id:magazine.id})">{{magazine.id}}</a></td>
+                <tr ng-repeat="magazine in vm.magazines track by magazine.id"  ui-sref="oeuvre-detail({id:magazine.oeuvreId})">
+                    <td>{{magazine.id}}</td>
                     <td>{{magazine.numero}}</td>
-                        <td>{{magazine.parution | date:'mediumDate'}}</td>
+                        <td>{{magazine.parution | date:'yyyy'}}</td>
                     <td>{{magazine.periodicite}}</td>
-                    <td>
-                        <a ui-sref="oeuvre-detail({id:magazine.oeuvreId})">{{magazine.oeuvreId}}</a>
-                    </td>
+                    <td>{{magazine.oeuvreId}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
@@ -43,12 +41,12 @@
                                 <span class="glyphicon glyphicon-eye-open"></span>
                                 <span class="hidden-xs hidden-sm"></span>
                             </button>
-                            <button type="submit"
-                                    ui-sref="magazine.edit({id:magazine.id})"
-                                    class="btn btn-primary btn-sm">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                                <span class="hidden-xs hidden-sm"></span>
-                            </button>
+                            <!-- <button type="submit"
+                                     ui-sref="magazine.edit({id:magazine.id})"
+                                     class="btn btn-primary btn-sm">
+                                 <span class="glyphicon glyphicon-pencil"></span>
+                                 <span class="hidden-xs hidden-sm"></span>
+                             </button> -->
                             <button type="submit"
                                     ui-sref="magazine.delete({id:magazine.id})"
                                     class="btn btn-danger btn-sm">
@@ -60,5 +58,9 @@
                 </tr>
             </tbody>
         </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+        <uib-pagination class="pagination-sm" total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
     </div>
 </div>

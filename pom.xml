@@ -581,8 +581,8 @@
                     <driver>org.mariadb.jdbc.Driver</driver>
                     <url>jdbc:mariadb://localhost:3306/bibliotheque</url>
                     <defaultSchemaName></defaultSchemaName>
-                    <username>root</username>
-                    <password>1992</password>
+                    <username>82Tjsw2</username>
+                    <password>f6-hqBSG</password>
                     <referenceUrl>hibernate:spring:org.miage.m2sid.bibliotheque.domain?dialect=org.hibernate.dialect.MySQL5InnoDBDialect&amp;hibernate.ejb.naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringNamingStrategy</referenceUrl>
                     <verbose>true</verbose>
                     <logging>debug</logging>

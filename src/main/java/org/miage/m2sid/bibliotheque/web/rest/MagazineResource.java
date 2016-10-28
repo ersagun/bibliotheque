@@ -5,10 +5,13 @@ import org.miage.m2sid.bibliotheque.domain.Magazine;
 
 import org.miage.m2sid.bibliotheque.repository.MagazineRepository;
 import org.miage.m2sid.bibliotheque.web.rest.util.HeaderUtil;
+import org.miage.m2sid.bibliotheque.web.rest.util.PaginationUtil;
 import org.miage.m2sid.bibliotheque.service.dto.MagazineDTO;
 import org.miage.m2sid.bibliotheque.service.mapper.MagazineMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -91,16 +94,20 @@ public class MagazineResource {
     /**
      * GET  /magazines : get all the magazines.
      *
+     * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of magazines in body
+     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
     @RequestMapping(value = "/magazines",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public List<MagazineDTO> getAllMagazines() {
-        log.debug("REST request to get all Magazines");
-        List<Magazine> magazines = magazineRepository.findAll();
-        return magazineMapper.magazinesToMagazineDTOs(magazines);
+    public ResponseEntity<List<MagazineDTO>> getAllMagazines(Pageable pageable)
+        throws URISyntaxException {
+        log.debug("REST request to get a page of Magazines");
+        Page<Magazine> page = magazineRepository.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/magazines");
+        return new ResponseEntity<>(magazineMapper.magazinesToMagazineDTOs(page.getContent()), headers, HttpStatus.OK);
     }
 
     /**
