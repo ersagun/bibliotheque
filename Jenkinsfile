@@ -18,13 +18,13 @@ node {
 //        sh "npm install"
 //    }
 
-    stage('clean') {
-        sh "./mvnw clean"
-    }
+//    stage('clean') {
+//        sh "./mvnw clean"
+//    }
 
-    stage('backend tests') {
-        sh "./mvnw test"
-    }
+//    stage('backend tests') {
+//        sh "./mvnw test"
+//    }
 
 //    stage('frontend tests') {
 //        sh "gulp test"
