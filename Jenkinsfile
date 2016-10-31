@@ -30,7 +30,7 @@ node {
 //        sh "gulp test"
 //    }
 
-    stage('packaging') {
-        sh "./mvnw package -Pprod -DskipTests"
-    }
+//    stage('packaging') {
+//        sh "./mvnw package -Pprod -DskipTests"
+//    }
 }
