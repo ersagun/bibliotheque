@@ -33,4 +33,12 @@ node {
 //    stage('packaging') {
 //        sh "./mvnw package -Pprod -DskipTests"
 //    }
+
+    stage('Creation Docker image') {
+        sh "docker build -t ersagun/bibliotheque:development ."
+    }
+
+//    stage('Run Kubernetes') {
+//        sh "kubectl run bibliotheque --image=ersagun/bibliotheque:development --port=8081"
+//    }  
 }
