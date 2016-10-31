@@ -3,16 +3,16 @@ node {
     // def nodeHome = tool name: 'node-4.6.0', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
     // env.PATH = "${nodeHome}/bin:${env.PATH}"
 
-    stage('check tools') {
-        sh "node -v"
-        sh "npm -v"
-        sh "bower -v"
-        sh "gulp -v"
-    }
+//    stage('check tools') {
+//        sh "node -v"
+//        sh "npm -v"
+//        sh "bower -v"
+//        sh "gulp -v"
+//    }
 
-    stage('checkout') {
-        checkout scm
-    }
+//    stage('checkout') {
+//        checkout scm
+//    }
 
 //    stage('npm install') {
 //        sh "npm install"
@@ -38,7 +38,7 @@ node {
         sh "docker build -t ersagun/bibliotheque:development ."
     }
 
-//    stage('Run Kubernetes') {
-//        sh "kubectl run bibliotheque --image=ersagun/bibliotheque:development --port=8081"
-//    }  
+    stage('Run Kubernetes') {
+        sh "kubectl run bibliotheque --image=ersagun/bibliotheque:development --port=8081"
+    }  
 }
