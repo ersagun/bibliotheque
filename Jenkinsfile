@@ -39,6 +39,6 @@ node {
     }
 
     stage('Run Kubernetes') {
-        sh "kubectl run bibliotheque --image=ersagun/bibliotheque:development --port=8081"
+        sh "kubectl run bibliotheque --image=ersagun/bibliotheque:development --port=8080"
     }  
 }
