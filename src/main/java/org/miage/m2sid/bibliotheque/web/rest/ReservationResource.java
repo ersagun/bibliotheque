@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.inject.Inject;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -31,7 +32,7 @@ import java.util.stream.Collectors;
 public class ReservationResource {
 
     private final Logger log = LoggerFactory.getLogger(ReservationResource.class);
-        
+
     @Inject
     private ReservationRepository reservationRepository;
 
@@ -102,6 +103,24 @@ public class ReservationResource {
         List<Reservation> reservations = reservationRepository.findAll();
         return reservationMapper.reservationsToReservationDTOs(reservations);
     }
+
+
+    /**
+     * GET  /isAlreadyReserved : get all the reservations.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of reservations in body
+     */
+    @RequestMapping(value = "/reservations/{userId}/{oeuvreId}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public Boolean isAlreadyReserved(@PathVariable Long userId, @PathVariable Long oeuvreId) {
+        log.debug("REST request is already reserved");
+        int nmReservation = Math.toIntExact(reservationRepository.countIfUserAlreadyReserved(userId, oeuvreId));
+        System.out.println(nmReservation+ "yolooooo");
+        return  nmReservation>=1;
+    }
+
 
     /**
      * GET  /reservations/:id : get the "id" reservation.

@@ -125,7 +125,7 @@
                         resolve: {
                             entity: function () {
                                 return {
-                                    dateDemande: null,
+                                    dateDemande: new Date(),
                                     id: null,
                                     oeuvreId: parseInt($stateParams.id_oeuvre, 10)
                                 };

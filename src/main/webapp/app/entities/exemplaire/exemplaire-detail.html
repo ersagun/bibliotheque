@@ -24,7 +24,7 @@
         <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
     </button>
 
-    <button type="submit"
+    <button type="submit" ng-show="{{vm.exemplaire.disponible}}"
             ui-sref="emprunt.newParam({id_exemplaire:vm.exemplaire.id})"
             class="btn btn-primary btn-sm">
         <span class="glyphicon glyphicon-send"></span>

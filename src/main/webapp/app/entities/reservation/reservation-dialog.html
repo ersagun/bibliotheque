@@ -4,7 +4,7 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 ng-click="vm.clear()">&times;</button>
-        <h4 class="modal-title" id="myReservationLabel">Create or edit a Reservation</h4>
+        <h4 class="modal-title" id="myReservationLabel">Créer ou modifiér une reservation</h4>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
@@ -15,28 +15,21 @@
         </div>
         <div class="form-group">
             <label class="control-label" for="field_dateDemande">Date Demande</label>
-                <div class="input-group">
-                    <input id="field_dateDemande" type="text" class="form-control" name="dateDemande" datetime-picker="{{dateformat}}" ng-model="vm.reservation.dateDemande" is-open="vm.datePickerOpenStatus.dateDemande"
-                      />
-                    <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dateDemande')"><i class="glyphicon glyphicon-calendar"></i></button>
-                    </span>
-                </div>
+                    <input id="field_dateDemande" type="text" class="form-control" name="dateDemande" ng-model="vm.reservation.dateDemande" ng-readonly="true"/>
         </div>
 
         <div class="form-group">
             <label for="field_usager">Usager</label>
-            <select class="form-control" id="field_usager" name="usager" ng-model="vm.reservation.usagerId" ng-options="usager.id as usager.prenom+' '+usager.nom for usager in vm.usagers"            >
+            <select class="form-control" id="field_usager" name="usager" ng-model="vm.reservation.usagerId" ng-options="usager.id as usager.prenom+' '+usager.nom for usager in vm.usagers" >
                 <option value=""></option>
             </select>
         </div>
         <div class="form-group">
             <label for="field_oeuvre">Oeuvre</label>
-            <select class="form-control" id="field_oeuvre" name="oeuvre" ng-model="vm.reservation.oeuvreId" ng-options="oeuvre.id as oeuvre.titre for oeuvre in vm.oeuvres"            >
-                <option value=""></option>
-            </select>
+            <input class="form-control" name="oeuvre" id="field_oeuvre" ng-readonly="true" ng-model="vm.reservation.oeuvreId" />
         </div>
     </div>
+
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
             <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>

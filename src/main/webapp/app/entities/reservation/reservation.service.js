@@ -7,9 +7,12 @@
     Reservation.$inject = ['$resource', 'DateUtils'];
 
     function Reservation ($resource, DateUtils) {
-        var resourceUrl =  'api/reservations/:id';
+        var resourceUrl =  'api/reservations/:id/';
 
-        return $resource(resourceUrl, {}, {
+        return $resource(resourceUrl, {
+            usagerId: '@usagerId',
+            oeuvreId: '@oeuvreId'
+        },{
             'query': { method: 'GET', isArray: true},
             'get': {
                 method: 'GET',
@@ -21,7 +24,15 @@
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': { method:'PUT' },
+
+
+            'isReserved': {method: 'GET',
+                isArray:false,
+                url:'api/reservations/:id/:usagerId/:oeuvreId/',
+                transformResponse: function (data) {return {reserved: angular.fromJson(data)}}
+            }
+
         });
     }
 })();

@@ -9,14 +9,14 @@
 
     function ReservationDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Reservation, Usager, Oeuvre) {
         var vm = this;
-
+        var isReserved={reserved:""};
         vm.reservation = entity;
         vm.clear = clear;
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.save = save;
         vm.usagers = Usager.query();
-        vm.oeuvres = Oeuvre.query();
+       // vm.oeuvres = Oeuvre.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
@@ -27,11 +27,19 @@
         }
 
         function save () {
-            vm.isSaving = true;
-            if (vm.reservation.id !== null) {
-                Reservation.update(vm.reservation, onSaveSuccess, onSaveError);
-            } else {
-                Reservation.save(vm.reservation, onSaveSuccess, onSaveError);
+            Reservation.isReserved(vm.reservation,saveCheck);
+
+        }
+        function saveCheck(result){
+            if(result.reserved){
+                window.alert("Usager a déjà reservé cet oeuvre");
+                }else {
+                    vm.isSaving = true;
+                    if (vm.reservation.id !== null) {
+                        Reservation.update(vm.reservation, onSaveSuccess, onSaveError);
+                    } else {
+                        Reservation.save(vm.reservation, onSaveSuccess, onSaveError);
+                    }
             }
         }
 

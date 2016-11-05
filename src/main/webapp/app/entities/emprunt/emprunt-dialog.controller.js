@@ -16,7 +16,7 @@
         vm.openCalendar = openCalendar;
         vm.save = save;
         vm.usagers = Usager.query();
-        vm.exemplaires = Exemplaire.query();
+       // vm.exemplaires = Exemplaire.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

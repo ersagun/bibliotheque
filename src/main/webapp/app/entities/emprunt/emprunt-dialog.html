@@ -4,7 +4,7 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 ng-click="vm.clear()">&times;</button>
-        <h4 class="modal-title" id="myEmpruntLabel">Create or edit a Emprunt</h4>
+        <h4 class="modal-title" id="myEmpruntLabel">Créer ou modifier un emprunt</h4>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
@@ -15,24 +15,20 @@
         </div>
         <div class="form-group">
             <label class="control-label" for="field_debut">Debut</label>
-                <div class="input-group">
-                    <input id="field_debut" type="text" class="form-control" name="debut" datetime-picker="{{dateformat}}" ng-model="vm.emprunt.debut" is-open="vm.datePickerOpenStatus.debut"
-                      />
-                    <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('debut')"><i class="glyphicon glyphicon-calendar"></i></button>
-                    </span>
-                </div>
+
+                    <input id="field_debut" type="text" class="form-control" name="debut" ng-readonly="true" ng-model="vm.emprunt.debut" />
+
         </div>
         <div class="form-group">
             <label class="control-label" for="field_duree">Duree</label>
-            <input type="number" class="form-control" name="duree" id="field_duree"
+            <input type="number" min="0" class="form-control" name="duree" id="field_duree"
                     ng-model="vm.emprunt.duree"
                      />
         </div>
 
         <div class="form-group">
             <label for="field_usager">Usager</label>
-            <select class="form-control" id="field_usager" name="usager" ng-model="vm.emprunt.usagerId" ng-options="usager.id as usager.id for usager in vm.usagers"            >
+            <select class="form-control" id="field_usager" name="usager" ng-model="vm.emprunt.usagerId" ng-options="usager.id as usager.prenom+' '+usager.nom for usager in vm.usagers"            >
                 <option value=""></option>
             </select>
             <a ui-sref="usager.new" target="_blank">Si l'usager n'existe pas, veuillez cliquez ici pour ajouter.</a>
@@ -41,9 +37,8 @@
 
         <div class="form-group">
             <label for="field_exemplaire">Exemplaire</label>
-            <select class="form-control" id="field_exemplaire" name="exemplaire" ng-model="vm.emprunt.exemplaireId" ng-options="exemplaire.id as exemplaire.id for exemplaire in vm.exemplaires"            >
-                <option value=""></option>
-            </select>
+            <input id="field_exemplaire" class="form-control" name="exemplaire" ng-model="vm.emprunt.exemplaireId" ng-readonly="true">
+            </input>
         </div>
     </div>
     <div class="modal-footer">
