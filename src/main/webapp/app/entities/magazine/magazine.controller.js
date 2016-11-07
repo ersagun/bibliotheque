@@ -5,11 +5,11 @@
         .module('bibliothequeApp')
         .controller('MagazineController', MagazineController);
 
-    MagazineController.$inject = ['$scope', '$state', 'Magazine', 'ParseLinks', 'AlertService', 'pagingParams', 'paginationConstants'];
+    MagazineController.$inject = ['$scope', '$state', 'Magazine','Oeuvre', 'ParseLinks', 'AlertService', 'pagingParams', 'paginationConstants'];
 
-    function MagazineController ($scope, $state, Magazine, ParseLinks, AlertService, pagingParams, paginationConstants) {
+    function MagazineController ($scope, $state, Magazine, Oeuvre, ParseLinks, AlertService, pagingParams, paginationConstants) {
         var vm = this;
-        
+
         vm.loadPage = loadPage;
         vm.predicate = pagingParams.predicate;
         vm.reverse = pagingParams.ascending;
@@ -35,6 +35,13 @@
                 vm.links = ParseLinks.parse(headers('link'));
                 vm.totalItems = headers('X-Total-Count');
                 vm.queryCount = vm.totalItems;
+                data.forEach(function(item){
+                    Oeuvre.get({id: item.oeuvreId}).$promise.then(function(todo) {
+                        item.oeuvreTitre=todo.titre;
+                    });
+
+                });
+
                 vm.magazines = data;
                 vm.page = pagingParams.page;
             }

@@ -27,19 +27,11 @@
         }
 
         function save () {
-            Reservation.isReserved(vm.reservation,saveCheck);
-
-        }
-        function saveCheck(result){
-            if(result.reserved){
-                window.alert("Usager a déjà reservé cet oeuvre");
-                }else {
-                    vm.isSaving = true;
-                    if (vm.reservation.id !== null) {
-                        Reservation.update(vm.reservation, onSaveSuccess, onSaveError);
-                    } else {
-                        Reservation.save(vm.reservation, onSaveSuccess, onSaveError);
-                    }
+            vm.isSaving = true;
+            if (vm.reservation.id !== null) {
+                Reservation.update(vm.reservation, onSaveSuccess, onSaveError);
+            } else {
+                Reservation.save(vm.reservation, onSaveSuccess, onSaveError);
             }
         }
 

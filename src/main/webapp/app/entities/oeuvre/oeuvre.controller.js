@@ -9,7 +9,7 @@
 
     function OeuvreController ($scope, $state, Oeuvre) {
         var vm = this;
-        
+
         vm.oeuvres = [];
 
         loadAll();

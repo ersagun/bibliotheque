@@ -1,7 +1,7 @@
 <div>
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <h2>User settings for [<b>{{vm.settingsAccount.login}}</b>]</h2>
+            <h2>Configurations pour  <b>{{vm.settingsAccount.login}}</b></h2>
 
             <div class="alert alert-success" ng-show="vm.success">
                 <strong>Settings saved!</strong>
@@ -12,7 +12,7 @@
             <form name="form" role="form" novalidate ng-submit="vm.save()" show-validation>
 
                 <div class="form-group">
-                    <label class="control-label" for="firstName">First Name</label>
+                    <label class="control-label" for="firstName">Prénom</label>
                     <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Your first name"
                            ng-model="vm.settingsAccount.firstName" ng-minlength=1 ng-maxlength=50 required maxlength="50">
                     <div ng-show="form.firstName.$dirty && form.firstName.$invalid">

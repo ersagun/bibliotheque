@@ -55,7 +55,17 @@ public class ReservationResource {
         if (reservationDTO.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("reservation", "idexists", "A new reservation cannot already have an ID")).body(null);
         }
+
         Reservation reservation = reservationMapper.reservationDTOToReservation(reservationDTO);
+
+        if (reservationRepository.countIfUserAlreadyReserved(reservation.getUsager().getId(),reservation.getOeuvre().getId())>0) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("reservation", "already reserved", "Usager a déjà reservé cet oeuvre")).body(null);
+        }
+
+        if (reservationRepository.countExemplaireAvailable(reservation.getOeuvre().getId())>0) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("reservation", "already reserved", "Pour cet oeuvre il y a un exemplaire disponible")).body(null);
+        }
+
         reservation = reservationRepository.save(reservation);
         ReservationDTO result = reservationMapper.reservationToReservationDTO(reservation);
         return ResponseEntity.created(new URI("/api/reservations/" + result.getId()))

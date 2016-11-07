@@ -4,7 +4,7 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
-        <dt><span>Date Edition</span></dt>
+        <dt><span>Date d'edition</span></dt>
         <dd>
             <span>{{vm.livre.dateEdition | date:'mediumDate'}}</span>
         </dd>
@@ -25,11 +25,11 @@
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
             class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Précédent</span>
     </button>
 
     <button type="button" ui-sref="livre-detail.edit({id:vm.livre.id})" class="btn btn-primary">
         <span class="glyphicon glyphicon-pencil"></span>
-        <span class="hidden-xs hidden-sm"> Edit</span>
+        <span class="hidden-xs hidden-sm"> Modifier</span>
     </button>
 </div>

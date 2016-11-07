@@ -4,7 +4,7 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 ng-click="vm.clear()">&times;</button>
-        <h4 class="modal-title" id="myExemplaireLabel">Create or edit a Exemplaire</h4>
+        <h4 class="modal-title" id="myExemplaireLabel">Créer ou modifier Exemplaire</h4>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
@@ -15,7 +15,7 @@
         </div>
         <div class="form-group">
             <label class="control-label" for="field_etat">Etat</label>
-            <input type="number" class="form-control" name="etat" id="field_etat"
+            <input type="number" min="0" max="3" class="form-control" name="etat" id="field_etat"
                     ng-model="vm.exemplaire.etat"
                      />
         </div>
@@ -28,17 +28,17 @@
 
         <div class="form-group">
             <label for="field_oeuvre">Oeuvre</label>
-            <select class="form-control" id="field_oeuvre" name="oeuvre" ng-model="vm.exemplaire.oeuvreId" ng-options="oeuvre.id as oeuvre.id for oeuvre in vm.oeuvres"            >
-                <option value=""></option>
-            </select>
+            <input type="number" class="form-control" name="disponible" id="field_oeuvre"
+                   ng-model="vm.exemplaire.oeuvreId"
+            />
         </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
-            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Annuler</span>
         </button>
         <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
-            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Enregistrer</span>
         </button>
     </div>
 </form>

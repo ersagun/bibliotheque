@@ -7,7 +7,7 @@
                 <button class="btn btn-primary" ui-sref="reservation.new" >
                     <span class="glyphicon glyphicon-plus"></span>
                     <span >
-                        Create new Reservation
+                        Créer une reservation
                     </span>
                 </button>
             </div>
@@ -30,34 +30,19 @@
                     <td><a ui-sref="reservation-detail({id:reservation.id})">{{reservation.id}}</a></td>
                     <td>{{reservation.dateDemande | date:'medium'}}</td>
                     <td>
-                        <a ui-sref="usager-detail({id:reservation.usagerId})">{{reservation.usagerId}}</a>
+                        <a ui-sref="usager-detail({id:reservation.usagerId})">{{reservation.usagerNom}}</a>
                     </td>
                     <td>
-                        <a ui-sref="oeuvre-detail({id:reservation.oeuvreId})">{{reservation.oeuvreId}}</a>
+                        <a ui-sref="oeuvre-detail({id:reservation.oeuvreId})">{{reservation.oeuvreTitre}}</a>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
-                            <button type="submit"
-                                    ui-sref="reservation-detail({id:reservation.id})"
-                                    class="btn btn-info btn-sm">
-                                <span class="glyphicon glyphicon-eye-open"></span>
-                                <span class="hidden-xs hidden-sm"></span>
-                            </button>
-
 
                             <button type="submit" ng-hide="vm.oeuvre.exemplaireDisponible"
-                                    ui-sref="emprunt.newParam({id_exemplaire:vm.reservation.exemplaireId})"
+                                    ui-sref="oeuvre-detail({id:reservation.oeuvreId})"
                                     class="btn btn-primary btn-sm">
                                 <span class="glyphicon glyphicon-send"></span>
                                 <span class="hidden-xs hidden-sm"> Emprunte </span>
-                            </button>
-
-
-                            <button type="submit"
-                                    ui-sref="reservation.delete({id:reservation.id})"
-                                    class="btn btn-danger btn-sm">
-                                <span class="glyphicon glyphicon-remove-circle"></span>
-                                <span class="hidden-xs hidden-sm"></span>
                             </button>
                         </div>
                     </td>

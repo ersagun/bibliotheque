@@ -13,8 +13,8 @@
         vm.exemplaire = entity;
         vm.clear = clear;
         vm.save = save;
-        vm.emprunts = Emprunt.query();
-        vm.oeuvres = Oeuvre.query();
+        //vm.emprunts = Emprunt.query();
+        //vm.oeuvres = Oeuvre.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

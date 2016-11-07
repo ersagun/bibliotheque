@@ -4,8 +4,10 @@ import com.codahale.metrics.annotation.Timed;
 import org.miage.m2sid.bibliotheque.domain.Emprunt;
 
 import org.miage.m2sid.bibliotheque.domain.Exemplaire;
+import org.miage.m2sid.bibliotheque.domain.Reservation;
 import org.miage.m2sid.bibliotheque.repository.EmpruntRepository;
 import org.miage.m2sid.bibliotheque.repository.ExemplaireRepository;
+import org.miage.m2sid.bibliotheque.repository.ReservationRepository;
 import org.miage.m2sid.bibliotheque.web.rest.util.HeaderUtil;
 import org.miage.m2sid.bibliotheque.service.dto.EmpruntDTO;
 import org.miage.m2sid.bibliotheque.service.mapper.EmpruntMapper;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.inject.Inject;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.ZonedDateTime;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -40,6 +43,9 @@ public class EmpruntResource {
     @Inject
     private ExemplaireRepository exemplaireRepository;
 
+    @Inject
+    private ReservationRepository reservationRepository;
+
 
     @Inject
     private EmpruntMapper empruntMapper;
@@ -57,19 +63,32 @@ public class EmpruntResource {
     @Timed
     public ResponseEntity<EmpruntDTO> createEmprunt(@RequestBody EmpruntDTO empruntDTO) throws URISyntaxException {
         log.debug("REST request to save Emprunt : {}", empruntDTO);
+        ResponseEntity<EmpruntDTO> answer;
+
         if (empruntDTO.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("emprunt", "idexists", "A new emprunt cannot already have an ID")).body(null);
+            answer= ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("emprunt", "idexists", "A new emprunt cannot already have an ID")).body(null);
         }
         Emprunt emprunt = empruntMapper.empruntDTOToEmprunt(empruntDTO);
-        emprunt = empruntRepository.save(emprunt);
+        if((emprunt.getDebut().isBefore(ZonedDateTime.now())) && (emprunt.getDuree()>0)){
+            if(exemplaireRepository.findOne(emprunt.getExemplaire().getId()).isDisponible()){
+                Exemplaire exemplaire= exemplaireRepository.findOne(empruntDTO.getExemplaireId());
+                exemplaire.setDisponible(false);
+                //effacer la reservation correspondant si l'oeuvre est déjà reservé
+                if(reservationRepository.countIfUserAlreadyReserved(emprunt.getUsager().getId(),exemplaire.getOeuvre().getId())>0){
+                    Reservation r=reservationRepository.getUserAlreadyReserved(emprunt.getUsager().getId(),exemplaire.getOeuvre().getId());
+                    reservationRepository.delete(r.getId());
+                }
+                emprunt = empruntRepository.save(emprunt);
+                exemplaireRepository.save(exemplaire);
+                EmpruntDTO result = empruntMapper.empruntToEmpruntDTO(emprunt);
 
-        Exemplaire exemplaire= exemplaireRepository.findOne(empruntDTO.getExemplaireId());
-        exemplaire.setDisponible(false);
-        exemplaireRepository.save(exemplaire);
-        EmpruntDTO result = empruntMapper.empruntToEmpruntDTO(emprunt);
-        return ResponseEntity.created(new URI("/api/emprunts/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert("emprunt", result.getId().toString()))
-            .body(result);
+                answer= ResponseEntity.created(new URI("/api/emprunts/" + result.getId()))
+                    .headers(HeaderUtil.createEntityCreationAlert("emprunt", result.getId().toString()))
+                    .body(result);
+            }else  answer= ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("emprunt", "exemplaire pas disponible", "Exemplaire pas disponible")).body(null);
+
+        }else answer= ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("emprunt", "date erreur", "date emprunt erronee")).body(null);
+        return answer;
     }
 
     /**
